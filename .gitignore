@@ -1,0 +1,15 @@
+# Ignorera IDE- och editorfiler
+.idea/
+.vs/
+*.vscode/
+
+# Ignorera byggfiler
+bin/
+obj/
+
+# Ignorera andra tillfälliga filer
+*.user
+*.lock
+*.tmp
+*.log
+*.vsidx
