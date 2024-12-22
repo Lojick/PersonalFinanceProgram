@@ -1,0 +1,14 @@
+Funktioner jag ska lägga  till:
+1. Lägga till transaktioner manuellt (AddTransactions). 
+2. Radera transaktioner manuellt (RemoveTransactions).
+3. Se nuvarande kontobalans (ShowCurrentBalance). 
+4. Se pengar spenderade årsvis, månadsvis, veckovis och dagvis (ShowSpentAmount).
+5. Se inkomst årsvis, månadsvis, veckovis och dagvis (ShowIncome).
+
+   string[] parts = line.Split(','); //Konverterar line till en array med variabeln 'parts'.
+
+                Transaction newTransaction = new Transaction //Skapar ett transaktions objekt.
+                {
+                    Amount = decimal.Parse(parts[0]), //Konverterar Amount och Date tillbaka till deras datatyper samt tilldelar dem till varsin index.
+                    Type = parts[1],
+                    Date = DateTime.Parse(parts[2])
