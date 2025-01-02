@@ -30,6 +30,7 @@
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             mainPanel = new Panel();
+            btnLogout = new Button();
             btnCloseProgram = new Button();
             btnShowReport = new Button();
             btnShowBalance = new Button();
@@ -46,6 +47,7 @@
             // 
             mainPanel.BackgroundImage = Properties.Resources.Pengar_bakgrund_till_GUI;
             mainPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            mainPanel.Controls.Add(btnLogout);
             mainPanel.Controls.Add(btnCloseProgram);
             mainPanel.Controls.Add(btnShowReport);
             mainPanel.Controls.Add(btnShowBalance);
@@ -59,20 +61,35 @@
             mainPanel.TabIndex = 8;
             mainPanel.Paint += mainPanel_Paint;
             // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Gainsboro;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(487, 365);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(170, 65);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "Logga ut";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // btnCloseProgram
             // 
+            btnCloseProgram.BackColor = Color.Gainsboro;
             btnCloseProgram.FlatStyle = FlatStyle.Flat;
             btnCloseProgram.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCloseProgram.Location = new Point(354, 331);
+            btnCloseProgram.Location = new Point(215, 365);
             btnCloseProgram.Name = "btnCloseProgram";
             btnCloseProgram.Size = new Size(170, 65);
             btnCloseProgram.TabIndex = 10;
-            btnCloseProgram.Text = "Stäng programmet";
-            btnCloseProgram.UseVisualStyleBackColor = true;
+            btnCloseProgram.Text = "Avsluta";
+            btnCloseProgram.UseVisualStyleBackColor = false;
             btnCloseProgram.Click += btnCloseProgram_Click;
             // 
             // btnShowReport
             // 
+            btnShowReport.BackColor = Color.Gainsboro;
             btnShowReport.FlatStyle = FlatStyle.Flat;
             btnShowReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
             btnShowReport.Location = new Point(241, 211);
@@ -80,11 +97,12 @@
             btnShowReport.Size = new Size(186, 88);
             btnShowReport.TabIndex = 13;
             btnShowReport.Text = "Visa utgifter och inkomster";
-            btnShowReport.UseVisualStyleBackColor = true;
+            btnShowReport.UseVisualStyleBackColor = false;
             btnShowReport.Click += btnShowReport_Click;
             // 
             // btnShowBalance
             // 
+            btnShowBalance.BackColor = Color.Gainsboro;
             btnShowBalance.FlatStyle = FlatStyle.Flat;
             btnShowBalance.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnShowBalance.Location = new Point(32, 211);
@@ -92,22 +110,25 @@
             btnShowBalance.Size = new Size(186, 88);
             btnShowBalance.TabIndex = 12;
             btnShowBalance.Text = "Visa kontobalans";
-            btnShowBalance.UseVisualStyleBackColor = true;
+            btnShowBalance.UseVisualStyleBackColor = false;
             btnShowBalance.Click += btnShowBalance_Click;
             // 
             // lblMainMeny
             // 
             lblMainMeny.AutoSize = true;
-            lblMainMeny.BackColor = SystemColors.ButtonFace;
-            lblMainMeny.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMainMeny.Location = new Point(109, 62);
+            lblMainMeny.BackColor = Color.White;
+            lblMainMeny.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMainMeny.ForeColor = SystemColors.ActiveCaptionText;
+            lblMainMeny.Location = new Point(319, 68);
             lblMainMeny.Name = "lblMainMeny";
-            lblMainMeny.Size = new Size(661, 30);
+            lblMainMeny.Size = new Size(241, 37);
             lblMainMeny.TabIndex = 11;
-            lblMainMeny.Text = "Välkommen till Personal Finance Program! Välj följande alternativ.";
+            lblMainMeny.Text = "Justera något här";
+            lblMainMeny.Click += lblMainMeny_Click;
             // 
             // btnRemoveTransaction
             // 
+            btnRemoveTransaction.BackColor = Color.Gainsboro;
             btnRemoveTransaction.FlatStyle = FlatStyle.Flat;
             btnRemoveTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
             btnRemoveTransaction.Location = new Point(659, 209);
@@ -115,19 +136,20 @@
             btnRemoveTransaction.Size = new Size(186, 88);
             btnRemoveTransaction.TabIndex = 9;
             btnRemoveTransaction.Text = "Ta bort transaktioner\r\n";
-            btnRemoveTransaction.UseVisualStyleBackColor = true;
+            btnRemoveTransaction.UseVisualStyleBackColor = false;
             btnRemoveTransaction.Click += btnRemoveTransaction_Click;
             // 
             // btnAddTransaction
             // 
+            btnAddTransaction.BackColor = Color.Gainsboro;
             btnAddTransaction.FlatStyle = FlatStyle.Flat;
             btnAddTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
-            btnAddTransaction.Location = new Point(450, 209);
+            btnAddTransaction.Location = new Point(449, 209);
             btnAddTransaction.Name = "btnAddTransaction";
             btnAddTransaction.Size = new Size(186, 88);
             btnAddTransaction.TabIndex = 8;
             btnAddTransaction.Text = "Lägg till transaktioner\r\n";
-            btnAddTransaction.UseVisualStyleBackColor = true;
+            btnAddTransaction.UseVisualStyleBackColor = false;
             btnAddTransaction.Click += btnAddTransaction_Click;
             // 
             // fileSystemWatcher1
@@ -162,5 +184,6 @@
         private Button btnAddTransaction;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private FileSystemWatcher fileSystemWatcher1;
+        private Button btnLogout;
     }
 }

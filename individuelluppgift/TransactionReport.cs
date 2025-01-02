@@ -1,60 +1,131 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Npgsql;
 
 namespace PersonalFinanceProgram
 {
     // Klass för att skapa en rapport av utgifter och inkomster
-    public class TransactionReport : Transaction
+    public static class TransactionReport
     {
-        // Metod som hämtar utgiftsrapport för år, månad, vecka och dag
-        public (string yearSpent, string monthSpent, string weekSpent, string daySpent) GetExpenseReport()
+        // Metod för att visa utgifter periodsvis (returnera varje variabel som representerar en viss period)
+        public static (string yearSpent, string monthSpent, string weekSpent, string daySpent) GetExpenseReport(int userId)
         {
-            // Beräknar totala utgifter för året
-            decimal yearSpent = transactionList.Where(t => t.Type == "Utgift" && t.Date.Year == DateTime.Now.Year).Sum(t => t.Amount);
-            // Beräknar totala utgifter för månaden
-            decimal monthSpent = transactionList.Where(t => t.Type == "Utgift" && t.Date.Month == DateTime.Now.Month).Sum(t => t.Amount);
-            // Beräknar totala utgifter för veckan (de senaste 7 dagarna)
-            decimal weekSpent = transactionList.Where(t => t.Type == "Utgift" && t.Date >= DateTime.Now.AddDays(-7)).Sum(t => t.Amount);
-            // Beräknar totala utgifter för dagen
-            decimal daySpent = transactionList.Where(t => t.Type == "Utgift" && t.Date.Date == DateTime.Now.Date).Sum(t => t.Amount);
+            // Börjar med att sätta värden på 0
+            decimal yearSpent = 0;
+            decimal monthSpent = 0;
+            decimal weekSpent = 0;
+            decimal daySpent = 0;
 
-            // Returnerar utgifter som formaterade strängar
+            using (var connection = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    var expenseQuery = "SELECT amount, dateTime FROM transactions WHERE userid = @userid AND type = 'Utgift'";
+                    using (var command = new NpgsqlCommand(expenseQuery, connection))
+                    {
+                        try
+                        {
+                            command.Parameters.AddWithValue("userid", userId);
+                            using (var reader = command.ExecuteReader())
+                            {
+                                try
+                                {
+                                    while (reader.Read())
+                                    {
+                                        // Läser raderna ifrån tabellen, tar ut värden ifrån kolumnerna amount och datetime som tillämpas efteråt.
+                                        var amount = reader.GetDecimal(0);
+                                        var dateTime = reader.GetDateTime(1);
+                                        // Logik för att filtrera årsvis, månadsvis, veckovis och dagvis.
+                                        if (dateTime.Year == DateTime.Now.Year) yearSpent += amount;
+                                        if (dateTime.Month == DateTime.Now.Month) monthSpent += amount;
+                                        if (dateTime >= DateTime.Now.AddDays(-7)) weekSpent += amount;
+                                        if (dateTime.Date == DateTime.Now.Date) daySpent += amount;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new Exception("Fel vid läsning av transaktioner: " + ex.Message);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Fel vid exekvering av SELECT-fråga: " + ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
+                }
+            }
+            // Slutligen returnera och visa årsvis, månadsvis, veckovis och dagvis.
             return (
-                $"Årsvis Utgift: {yearSpent:C}",
-                $"Månadsvis Utgift: {monthSpent:C}", //Använder :C för att skriva ut i kronor.
-                $"Veckovis Utgift: {weekSpent:C}",
-                $"Dagvis Utgift: {daySpent:C}"
+                $"Årsvis utgift: {yearSpent:C}",
+                $"Månadsvis utgift: {monthSpent:C}",
+                $"Veckovis utgift: {weekSpent:C}",
+                $"Dagvis utgift: {daySpent:C}"
             );
         }
 
-        // Metod som hämtar inkomstrapport för år, månad, vecka och dag
-        public (string yearIncome, string monthIncome, string weekIncome, string dayIncome) GetIncomeReport()
+        // Samma logik på denna metoden fast inkomst-baserat istället.
+        public static (string yearIncome, string monthIncome, string weekIncome, string dayIncome) GetIncomeReport(int userId)
         {
-            // Beräknar totala inkomster för året
-            decimal yearIncome = transactionList.Where(t => t.Type == "Inkomst" && t.Date.Year == DateTime.Now.Year).Sum(t => t.Amount);
-            // Beräknar totala inkomster för månaden
-            decimal monthIncome = transactionList.Where(t => t.Type == "Inkomst" && t.Date.Month == DateTime.Now.Month).Sum(t => t.Amount);
-            // Beräknar totala inkomster för veckan (de senaste 7 dagarna)
-            decimal weekIncome = transactionList.Where(t => t.Type == "Inkomst" && t.Date >= DateTime.Now.AddDays(-7)).Sum(t => t.Amount);
-            // Beräknar totala inkomster för dagen
-            decimal dayIncome = transactionList.Where(t => t.Type == "Inkomst" && t.Date.Date == DateTime.Now.Date).Sum(t => t.Amount);
+            decimal yearIncome = 0;
+            decimal monthIncome = 0;
+            decimal weekIncome = 0;
+            decimal dayIncome = 0;
 
-            // Returnerar inkomster som formaterade strängar
+            using (var connection = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    var incomeQuery = "SELECT amount, dateTime FROM transactions WHERE userid = @userid AND type = 'Inkomst'";
+                    using (var command = new NpgsqlCommand(incomeQuery, connection))
+                    {
+                        try
+                        {
+                            command.Parameters.AddWithValue("userid", userId);
+                            using (var reader = command.ExecuteReader())
+                            {
+                                try
+                                {
+                                    while (reader.Read())
+                                    {
+                                        var amount = reader.GetDecimal(0);
+                                        var dateTime = reader.GetDateTime(1);
+
+                                        if (dateTime.Year == DateTime.Now.Year) yearIncome += amount;
+                                        if (dateTime.Month == DateTime.Now.Month) monthIncome += amount;
+                                        if (dateTime >= DateTime.Now.AddDays(-7)) weekIncome += amount;
+                                        if (dateTime.Date == DateTime.Now.Date) dayIncome += amount;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new Exception("Fel vid läsning av transaktioner: " + ex.Message);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Fel vid exekvering av SELECT-fråga: " + ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
+                }
+            }
             return (
-                $"Årsvis Inkomst: {yearIncome:C}",
-                $"Månadsvis Inkomst: {monthIncome:C}",
-                $"Veckovis Inkomst: {weekIncome:C}",
-                $"Dagvis Inkomst: {dayIncome:C}"
+                $"Årsvis inkomst: {yearIncome:C}",
+                $"Månadsvis inkomst: {monthIncome:C}",
+                $"Veckovis inkomst: {weekIncome:C}",
+                $"Dagvis inkomst: {dayIncome:C}"
             );
         }
     }
 }
-
-
-
-
-
-
-
-

@@ -134,7 +134,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.LightGray;
+            button1.BackColor = SystemColors.ScrollBar;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(404, 300);

@@ -1,43 +1,70 @@
 ﻿using System;
 using PersonalFinanceProgram;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PersonalFinanceGUI
 {
     public partial class RemoveTransactionForm : Form
     {
-        private TransactionManager transactionManager = new TransactionManager();
-
         public RemoveTransactionForm()
         {
             InitializeComponent(); // Initierar alla komponenter i formuläret
-            // Ladda och visa alla transaktioner i listboxen när formuläret öppnas.
-            transactionManager.ShowTransactions(listboxTransactions);
+            LoadTransactions(); // Ladda och visa alla transaktioner i listboxen vid formulärets start
+        }
+
+        // Metod för att ladda transaktioner till listboxen
+        private void LoadTransactions()
+        {
+            try
+            {
+                // Hämta transaktioner från TransactionManager
+                var transactionsWithUserName = TransactionManager.GetTransactions(CurrentUser.UserID);
+
+                // Rensa listboxen innan nya transaktioner läggs till
+                listboxTransactions.Items.Clear();
+
+                // Lägg till varje transaktion i listboxen
+                foreach (var (userName, transaction) in transactionsWithUserName)
+                {
+                    listboxTransactions.Items.Add(
+                        $"{userName} - {transaction.TransactionId}: {transaction.Type} - {transaction.Amount} kr ({transaction.DateTime:yyyy-MM-dd HH:mm})"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Kunde inte ladda transaktioner: {ex.Message}", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Klickhändelse för att ta bort en vald transaktion
         private void btnRemoveTransaction_Click(object sender, EventArgs e)
         {
-            int selectedIndex = listboxTransactions.SelectedIndex;
-
-            // Kontrollera om en transaktion har valts
-            if (selectedIndex >= 0)
+            if (listboxTransactions.SelectedIndex >= 0) // Kontrollera om en transaktion är vald
             {
-                // Ta bort vald transaktion och uppdatera listan
-                transactionManager.RemoveTransaction(selectedIndex);
-                transactionManager.ShowTransactions(listboxTransactions); // Uppdatera listboxen
+                try
+                {
+                    // Hämta TransactionId från den valda raden
+                    var selectedTransaction = listboxTransactions.SelectedItem.ToString();
+                    int transactionId = int.Parse(selectedTransaction.Split(':')[0].Trim()); // Extrahera TransactionId
+
+                    // Ta bort transaktionen från databasen
+                    TransactionManager.RemoveTransaction(transactionId, CurrentUser.UserID);
+
+                    // Uppdatera listboxen efter borttagning
+                    LoadTransactions();
+
+                    MessageBox.Show("Transaktionen har tagits bort.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Kunde inte ta bort transaktionen: {ex.Message}", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
                 // Visa ett meddelande om ingen transaktion valts
-                MessageBox.Show("Välj en transaktion att ta bort");
+                MessageBox.Show("Välj en transaktion att ta bort.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -47,11 +74,20 @@ namespace PersonalFinanceGUI
             this.Close(); // Stänger formuläret och återgår till föregående vy
         }
 
-        // Tomma händelser, redo för eventuell framtida logik eller kan tas bort om de inte används
-        private void lblRemoveTransaction_Click(object sender, EventArgs e) { }
+        // Händelse för listboxens valändring (valfritt att använda)
+        private void listboxTransactions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Lägg till eventuell logik för när ett objekt i listan väljs (valfritt)
+        }
+        private void RemoveTransactionForm_Load(object sender, EventArgs e)
+        {
+            // Här kan du lägga till logik som körs när formuläret laddas.
+            // Om det inte behövs kan du låta metoden vara tom.
+        }
 
-        private void listBoxTransactions_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void listboxTransactions_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
 
-        private void RemoveTransactionForm_Load(object sender, EventArgs e) { }
+        }
     }
 }

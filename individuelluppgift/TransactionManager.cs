@@ -1,63 +1,145 @@
 using System;
-using System.Windows.Forms;
-using System.Security.Cryptography.X509Certificates;
+using Npgsql;
 
 namespace PersonalFinanceProgram
 {
-    public class TransactionManager : Transaction
+    public static class TransactionManager
     {
-        // Vi skapar en funktion som lägger till transaktioner till listan.
-        public void AddTransaction(decimal amount, string type)
+        public static void AddTransaction( //Metod för att lägga till transaktioner i databasen
+            int userid,
+            decimal amount,
+            string type,
+            DateTime dateTime
+        )
         {
-            // Vi skapar ett objekt som representerar en ny transaktion.
-            Transaction newTransaction = new Transaction
+            using (var connection = DatabaseConnection.GetConnection())
             {
-                Amount = amount,
-                Type = type,         // Här använder vi objektinitiering för ett mer organiserat sätt att skapa objekt.
-                Date = DateTime.Now  // Sätter datumet till när transaktinen skapas.
-            };
-
-            // Lägg till den nya transaktionen i transaktionslistan
-            transactionList.Add(newTransaction);
+                try
+                {
+                    connection.Open();
+                    var addTransactionQuery =
+                        "INSERT INTO transactions (userid, amount, type, dateTime) VALUES (@userid, @amount, @type, @dateTime)";
+                    using (var command = new NpgsqlCommand(addTransactionQuery, connection))
+                    {
+                        try
+                        {
+                            command.Parameters.AddWithValue("userid", userid);
+                            command.Parameters.AddWithValue("amount", amount);
+                            command.Parameters.AddWithValue("type", type);
+                            command.Parameters.AddWithValue("dateTime", dateTime);
+                            command.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Fel vid inlägg av transaktion: " + ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
+                }
+            }
         }
 
-        // Metod för att visa alla transaktioner i en ListBox (GUI) 
-        public void ShowTransactions(ListBox listBox) //Använder ListBox från GUI toolbox och listbox som parameter.
+        //Metod för att hämta och visa transaktioner från databasen tillsammans med användarnamn (JOINS)
+        //Den lägger till transaktionen i en lista i slutet och returnerar listan.
+        public static List<(string UserName, Transaction Transaction)> GetTransactions(int userId)
         {
-            //Rensar alla posters i ListBox innan vi lägger till nya. 
-            listBox.Items.Clear();
-            
-            //Kollar ifall listan är tom.
-            if (transactionList.Count == 0) 
-            {
-                listBox.Items.Add("Du har inte lagt till några transaktioner.");
-                return;
-            }
-            // Loopar genom transaktionslistan för att visa varje transaktion med dess index.
-            for (int i = 0; i < transactionList.Count; i++)
-            {
-                var transaction = transactionList[i]; // Hämtar transaktionen vid index i.
+            var results = new List<(string UserName, Transaction Transaction)>();
 
-                // Skriv ut transaktionen med ett användarvänligt index (börjar på 1).
-                listBox.Items.Add($"{i + 1}: {transaction.Amount:C} - {transaction.Type} - {transaction.Date}");
+            using (var connection = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    var query =
+                        @"
+                        SELECT u.name, t.transactionid, t.amount, t.type, t.dateTime 
+                        FROM users u
+                        JOIN transactions t ON u.userid = t.userid
+                        WHERE u.userid = @userid";
+
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        try
+                        {
+                            command.Parameters.AddWithValue("userid", userId);
+
+                            using (var reader = command.ExecuteReader())
+                            {
+                                try
+                                {
+                                    while (reader.Read()) //Läser JOINS-tabellen rad för rad.
+                                    { //Efter att ha läst klart så lägger den till värden från alla kolumner till en lista och skapar ett objekt.
+                                        results.Add(
+                                            (
+                                                reader.GetString(0), // UserName
+                                                new Transaction
+                                                {
+                                                    TransactionId = reader.GetInt32(1),
+                                                    UserId = userId,
+                                                    Amount = reader.GetDecimal(2),
+                                                    Type = reader.GetString(3),
+                                                    DateTime = reader.GetDateTime(4),
+                                                }
+                                            )
+                                        );
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new Exception(
+                                        "Fel vid läsning av transaktioner: " + ex.Message
+                                    );
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(
+                                "Fel vid exekvering av SELECT-fråga: " + ex.Message
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
+                }
             }
+
+            return results;
         }
 
-        public void RemoveTransaction(int index)
+        //Metod för att ta bort en transaktion från databasen baserat på transactionid och userid (den användaren man är inloggad med).
+        public static void RemoveTransaction(int transactionid, int userid)
         {
-            // Kontrollera att indexet är inom giltiga gränser.
-            if (index >= 0 && index < transactionList.Count)
+            using (var connection = DatabaseConnection.GetConnection())
             {
-                // Ta bort transaktionen vid det angivna indexet.
-                transactionList.RemoveAt(index);
-                Console.WriteLine("Transaktion borttaget!"); // Bekräfta borttagningen.
-
-                SaveAndLoadData removeData = new SaveAndLoadData();
-                removeData.SaveData(); // Anropa den så uppdateras även SaveData när vi tar bort en transaktion.
-            }
-            else
-            {
-                Console.WriteLine("Ogiltigt index. Försök igen."); // Hantera ogiltigt index.
+                try
+                {
+                    connection.Open();
+                    var query =
+                        "DELETE FROM transactions WHERE transactionid = @transactionid AND userid = @userid";
+                    using (var command = new NpgsqlCommand(query, connection))
+                    {
+                        try
+                        {
+                            command.Parameters.AddWithValue("transactionid", transactionid);
+                            command.Parameters.AddWithValue("userid", userid);
+                            command.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Fel vid radering av transaktion: " + ex.Message);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
+                }
             }
         }
     }

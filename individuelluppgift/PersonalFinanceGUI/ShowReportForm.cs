@@ -13,8 +13,16 @@ namespace PersonalFinanceGUI
     public partial class ShowReportForm : Form
     {
         // Konstruktor som tar emot inkomst- och utgiftsvärden för att visa i etiketter (labels)
-        public ShowReportForm(string yearIncome, string monthIncome, string weekIncome, string dayIncome,
-                              string yearExpense, string monthExpense, string weekExpense, string dayExpense)
+        public ShowReportForm(
+            string yearIncome,
+            string monthIncome,
+            string weekIncome,
+            string dayIncome,
+            string yearExpense,
+            string monthExpense,
+            string weekExpense,
+            string dayExpense
+        )
         {
             InitializeComponent(); // Initierar alla komponenter i formuläret
 
@@ -39,12 +47,19 @@ namespace PersonalFinanceGUI
 
         // Klickhändelser för respektive etikett. Dessa är tomma men kan användas om det behövs.
         private void lblYearIncome_Click(object sender, EventArgs e) { }
+
         private void lblMonthIncome_Click(object sender, EventArgs e) { }
+
         private void lblWeekIncome_Click(object sender, EventArgs e) { }
+
         private void lblDayIncome_Click(object sender, EventArgs e) { }
+
         private void lblYearExpense_Click(object sender, EventArgs e) { }
+
         private void lblMonthExpense_Click(object sender, EventArgs e) { }
+
         private void lblWeekExpense_Click(object sender, EventArgs e) { }
+
         private void lblDayExpense_Click(object sender, EventArgs e) { }
 
         // Klickhändelse för "Tillbaka"-knappen

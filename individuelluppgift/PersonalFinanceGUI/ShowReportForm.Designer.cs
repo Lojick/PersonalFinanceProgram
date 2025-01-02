@@ -140,7 +140,7 @@
             // 
             // btnReturnFromReport
             // 
-            btnReturnFromReport.BackColor = SystemColors.ControlDark;
+            btnReturnFromReport.BackColor = SystemColors.ScrollBar;
             btnReturnFromReport.FlatStyle = FlatStyle.Flat;
             btnReturnFromReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReturnFromReport.Location = new Point(339, 308);

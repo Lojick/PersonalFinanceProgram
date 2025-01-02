@@ -30,7 +30,7 @@
         {
             lblRemoveTransaction = new Label();
             btnRemoveTransaction = new Button();
-            ReturnFromRemoveTransactionForm = new Button();
+            btnReturnFromRemoveTransactionForm = new Button();
             listboxTransactions = new ListBox();
             SuspendLayout();
             // 
@@ -43,7 +43,6 @@
             lblRemoveTransaction.Size = new Size(412, 26);
             lblRemoveTransaction.TabIndex = 0;
             lblRemoveTransaction.Text = "Välj vilken transaktion du vill ta bort från listan";
-            lblRemoveTransaction.Click += lblRemoveTransaction_Click;
             // 
             // btnRemoveTransaction
             // 
@@ -58,18 +57,18 @@
             btnRemoveTransaction.UseVisualStyleBackColor = false;
             btnRemoveTransaction.Click += btnRemoveTransaction_Click;
             // 
-            // ReturnFromRemoveTransactionForm
+            // btnReturnFromRemoveTransactionForm
             // 
-            ReturnFromRemoveTransactionForm.BackColor = SystemColors.ControlDark;
-            ReturnFromRemoveTransactionForm.FlatStyle = FlatStyle.Flat;
-            ReturnFromRemoveTransactionForm.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReturnFromRemoveTransactionForm.Location = new Point(584, 415);
-            ReturnFromRemoveTransactionForm.Name = "ReturnFromRemoveTransactionForm";
-            ReturnFromRemoveTransactionForm.Size = new Size(109, 41);
-            ReturnFromRemoveTransactionForm.TabIndex = 2;
-            ReturnFromRemoveTransactionForm.Text = "Tillbaka";
-            ReturnFromRemoveTransactionForm.UseVisualStyleBackColor = false;
-            ReturnFromRemoveTransactionForm.Click += btnReturnFromRemoveTransactionForm_Click;
+            btnReturnFromRemoveTransactionForm.BackColor = SystemColors.ScrollBar;
+            btnReturnFromRemoveTransactionForm.FlatStyle = FlatStyle.Flat;
+            btnReturnFromRemoveTransactionForm.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReturnFromRemoveTransactionForm.Location = new Point(587, 409);
+            btnReturnFromRemoveTransactionForm.Name = "btnReturnFromRemoveTransactionForm";
+            btnReturnFromRemoveTransactionForm.Size = new Size(112, 62);
+            btnReturnFromRemoveTransactionForm.TabIndex = 2;
+            btnReturnFromRemoveTransactionForm.Text = "Tillbaka";
+            btnReturnFromRemoveTransactionForm.UseVisualStyleBackColor = false;
+            btnReturnFromRemoveTransactionForm.Click += btnReturnFromRemoveTransactionForm_Click;
             // 
             // listboxTransactions
             // 
@@ -80,7 +79,7 @@
             listboxTransactions.Name = "listboxTransactions";
             listboxTransactions.Size = new Size(366, 319);
             listboxTransactions.TabIndex = 3;
-            listboxTransactions.SelectedIndexChanged += listBoxTransactions_SelectedIndexChanged;
+            listboxTransactions.SelectedIndexChanged += listboxTransactions_SelectedIndexChanged_1;
             // 
             // RemoveTransactionForm
             // 
@@ -89,11 +88,11 @@
             BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(729, 492);
             Controls.Add(listboxTransactions);
-            Controls.Add(ReturnFromRemoveTransactionForm);
+            Controls.Add(btnReturnFromRemoveTransactionForm);
             Controls.Add(btnRemoveTransaction);
             Controls.Add(lblRemoveTransaction);
             Name = "RemoveTransactionForm";
-            Text = "Form2";
+            Text = "RemoveTransactionForm";
             Load += RemoveTransactionForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -101,9 +100,9 @@
 
         #endregion
 
-        private Label lblRemoveTransaction;
-        private Button btnRemoveTransaction;
-        private Button ReturnFromRemoveTransactionForm;
-        private ListBox listboxTransactions;
+        private System.Windows.Forms.Label lblRemoveTransaction;
+        private System.Windows.Forms.Button btnRemoveTransaction;
+        private System.Windows.Forms.Button btnReturnFromRemoveTransactionForm;
+        private System.Windows.Forms.ListBox listboxTransactions;
     }
 }

@@ -63,6 +63,16 @@ namespace PersonalFinanceGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap login_form_bakgrundsbild {
+            get {
+                object obj = ResourceManager.GetObject("login form bakgrundsbild", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pengar_bakgrund_till_GUI {
             get {
                 object obj = ResourceManager.GetObject("Pengar bakgrund till GUI", resourceCulture);

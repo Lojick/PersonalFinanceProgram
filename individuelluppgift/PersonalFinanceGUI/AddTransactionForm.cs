@@ -34,13 +34,11 @@ namespace PersonalFinanceGUI
                     return;
                 }
 
-                // Skapa instanser av TransactionManager och SaveAndLoadData
-                TransactionManager manager = new TransactionManager();
-                SaveAndLoadData saveData = new SaveAndLoadData();
+                //Skapa aktuellt datum och tid
+                DateTime dateTime = DateTime.Now;
 
-                // Lägg till transaktionen i listan och spara uppdaterad data
-                manager.AddTransaction(amount, type);
-                saveData.SaveData();
+                //Anropa TransactionManager för att lägga till transaktionen
+                TransactionManager.AddTransaction(CurrentUser.UserID, amount, type, dateTime);
 
                 // Bekräftelsemeddelande
                 MessageBox.Show("Transaktion tillagd!");
