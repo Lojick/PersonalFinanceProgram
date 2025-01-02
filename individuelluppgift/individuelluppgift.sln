@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceProgram", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceGUI", "PersonalFinanceGUI\PersonalFinanceGUI.csproj", "{AE1AF582-1544-4A41-97DC-C18A0B820379}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinanceTest", "PersonalFinanceTest\PersonalFinanceTest.csproj", "{6F17B429-7847-489E-A670-33782BB2A6B0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{AE1AF582-1544-4A41-97DC-C18A0B820379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE1AF582-1544-4A41-97DC-C18A0B820379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE1AF582-1544-4A41-97DC-C18A0B820379}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F17B429-7847-489E-A670-33782BB2A6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F17B429-7847-489E-A670-33782BB2A6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F17B429-7847-489E-A670-33782BB2A6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F17B429-7847-489E-A670-33782BB2A6B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

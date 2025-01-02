@@ -8,15 +8,12 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="PersonalFinanceGUI\**" />
-	  <Compile Remove="PersonalFinanceTest\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Remove="PersonalFinanceGUI\**" />
-	  <EmbeddedResource Remove="PersonalFinanceTest\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="PersonalFinanceGUI\**" />
-	  <None Remove="PersonalFinanceTest\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />

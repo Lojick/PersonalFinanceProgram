@@ -119,7 +119,7 @@
             lblMainMeny.BackColor = Color.White;
             lblMainMeny.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMainMeny.ForeColor = SystemColors.ActiveCaptionText;
-            lblMainMeny.Location = new Point(319, 68);
+            lblMainMeny.Location = new Point(319, 52);
             lblMainMeny.Name = "lblMainMeny";
             lblMainMeny.Size = new Size(241, 37);
             lblMainMeny.TabIndex = 11;
