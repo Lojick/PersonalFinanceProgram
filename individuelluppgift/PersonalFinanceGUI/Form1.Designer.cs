@@ -39,6 +39,7 @@
             btnAddTransaction = new Button();
             backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             fileSystemWatcher1 = new FileSystemWatcher();
+            button1 = new Button();
             mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
@@ -47,6 +48,7 @@
             // 
             mainPanel.BackgroundImage = Properties.Resources.Pengar_bakgrund_till_GUI;
             mainPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            mainPanel.Controls.Add(button1);
             mainPanel.Controls.Add(btnLogout);
             mainPanel.Controls.Add(btnCloseProgram);
             mainPanel.Controls.Add(btnShowReport);
@@ -157,6 +159,15 @@
             fileSystemWatcher1.EnableRaisingEvents = true;
             fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // button1
+            // 
+            button1.Location = new Point(692, 358);
+            button1.Name = "button1";
+            button1.Size = new Size(8, 8);
+            button1.TabIndex = 15;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -185,5 +196,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private FileSystemWatcher fileSystemWatcher1;
         private Button btnLogout;
+        private Button button1;
     }
 }

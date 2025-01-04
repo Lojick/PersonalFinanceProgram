@@ -7,7 +7,7 @@ namespace PersonalFinanceGUI
         public Form1()
         {
             InitializeComponent();
-            lblMainMeny.Text = $"Välkommen, du är inloggad som: {CurrentUser.UserName}.";
+            lblMainMeny.Text = $"Välkommen, du är inloggad som: {CurrentUser.UserName}";
         }
 
         // Event som k�rs n�r formul�ret laddas
