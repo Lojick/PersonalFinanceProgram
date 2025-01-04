@@ -13,3 +13,6 @@ obj/
 *.tmp
 *.log
 *.vsidx
+
+# Ignorera connectionstring
+PersonalFinanceProgram/appsettings.json
