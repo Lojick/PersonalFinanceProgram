@@ -6,8 +6,10 @@ namespace PersonalFinanceProgram
 {
     public static class DatabaseConnection
     {
+        /// <summary>
         /// Skapar och returnerar en NpgsqlConnection för att ansluta till PostgreSQL.
         /// ConnectionString hämtas från appsettings.json.
+        /// </summary>
         public static NpgsqlConnection GetConnection()
         {
             try

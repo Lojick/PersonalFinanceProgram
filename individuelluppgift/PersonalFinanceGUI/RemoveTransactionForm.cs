@@ -1,6 +1,7 @@
 ﻿using System;
 using PersonalFinanceProgram;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PersonalFinanceGUI
 {
@@ -9,7 +10,10 @@ namespace PersonalFinanceGUI
         public RemoveTransactionForm()
         {
             InitializeComponent(); // Initierar alla komponenter i formuläret
-            LoadTransactions(); // Ladda och visa alla transaktioner i listboxen vid formulärets start
+            LoadTransactions();    // Ladda och visa alla transaktioner i listboxen vid formulärets start
+
+            // Ställ in teckensnittet för listboxen
+            listboxTransactions.Font = new Font("Consolas", 10);
         }
 
         // Metod för att ladda transaktioner till listboxen
@@ -24,10 +28,10 @@ namespace PersonalFinanceGUI
                 listboxTransactions.Items.Clear();
 
                 // Lägg till varje transaktion i listboxen
-                foreach (var (userName, transaction) in transactionsWithUserName)
+                foreach (var (UserName, transaction) in transactionsWithUserName)
                 {
                     listboxTransactions.Items.Add(
-                        $"{userName} - {transaction.TransactionId}: {transaction.Type} - {transaction.Amount} kr ({transaction.DateTime:yyyy-MM-dd HH:mm})"
+                        $"{transaction.TransactionId}: {transaction.Type} - {transaction.Amount} kr ({transaction.DateTime:yyyy-MM-dd HH:mm})"
                     );
                 }
             }
@@ -79,15 +83,17 @@ namespace PersonalFinanceGUI
         {
             // Lägg till eventuell logik för när ett objekt i listan väljs (valfritt)
         }
+
+        // Händelse som körs när formuläret laddas
         private void RemoveTransactionForm_Load(object sender, EventArgs e)
         {
-            // Här kan du lägga till logik som körs när formuläret laddas.
-            // Om det inte behövs kan du låta metoden vara tom.
+            // Lägg till logik som körs när formuläret laddas (om nödvändigt)
         }
 
+        // Ytterligare eventhanterare för listboxen (kan tas bort om de inte används)
         private void listboxTransactions_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            // Tom eventhanterare (kan tas bort om den inte behövs)
         }
     }
 }

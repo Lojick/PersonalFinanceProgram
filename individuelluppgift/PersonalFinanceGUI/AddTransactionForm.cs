@@ -34,10 +34,10 @@ namespace PersonalFinanceGUI
                     return;
                 }
 
-                //Skapa aktuellt datum och tid
+                // Skapa aktuellt datum och tid
                 DateTime dateTime = DateTime.Now;
 
-                //Anropa TransactionManager för att lägga till transaktionen
+                // Anropa TransactionManager för att lägga till transaktionen
                 TransactionManager.AddTransaction(CurrentUser.UserID, amount, type, dateTime);
 
                 // Bekräftelsemeddelande

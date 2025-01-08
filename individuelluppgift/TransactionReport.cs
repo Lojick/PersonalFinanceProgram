@@ -7,10 +7,11 @@ namespace PersonalFinanceProgram
     // Klass för att skapa en rapport av utgifter och inkomster
     public static class TransactionReport
     {
-        // Metod för att visa utgifter periodsvis (returnera varje variabel som representerar en viss period)
+        /// <summary>
+        /// Genererar en rapport över utgifter årsvis, månadsvis, veckovis och dagvis.
+        /// </summary>
         public static (string yearSpent, string monthSpent, string weekSpent, string daySpent) GetExpenseReport(int userId)
         {
-            // Börjar med att sätta värden på 0
             decimal yearSpent = 0;
             decimal monthSpent = 0;
             decimal weekSpent = 0;
@@ -22,21 +23,22 @@ namespace PersonalFinanceProgram
                 {
                     connection.Open();
                     var expenseQuery = "SELECT amount, dateTime FROM transactions WHERE userid = @userid AND type = 'Utgift'";
+
                     using (var command = new NpgsqlCommand(expenseQuery, connection))
                     {
                         try
                         {
                             command.Parameters.AddWithValue("userid", userId);
+
                             using (var reader = command.ExecuteReader())
                             {
                                 try
                                 {
                                     while (reader.Read())
                                     {
-                                        // Läser raderna ifrån tabellen, tar ut värden ifrån kolumnerna amount och datetime som tillämpas efteråt.
                                         var amount = reader.GetDecimal(0);
                                         var dateTime = reader.GetDateTime(1);
-                                        // Logik för att filtrera årsvis, månadsvis, veckovis och dagvis.
+
                                         if (dateTime.Year == DateTime.Now.Year) yearSpent += amount;
                                         if (dateTime.Month == DateTime.Now.Month) monthSpent += amount;
                                         if (dateTime >= DateTime.Now.AddDays(-7)) weekSpent += amount;
@@ -60,7 +62,7 @@ namespace PersonalFinanceProgram
                     throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
                 }
             }
-            // Slutligen returnera och visa årsvis, månadsvis, veckovis och dagvis.
+
             return (
                 $"Årsvis utgift: {yearSpent:C}",
                 $"Månadsvis utgift: {monthSpent:C}",
@@ -69,7 +71,9 @@ namespace PersonalFinanceProgram
             );
         }
 
-        // Samma logik på denna metoden fast inkomst-baserat istället.
+        /// <summary>
+        /// Genererar en rapport över inkomster årsvis, månadsvis, veckovis och dagvis.
+        /// </summary>
         public static (string yearIncome, string monthIncome, string weekIncome, string dayIncome) GetIncomeReport(int userId)
         {
             decimal yearIncome = 0;
@@ -83,11 +87,13 @@ namespace PersonalFinanceProgram
                 {
                     connection.Open();
                     var incomeQuery = "SELECT amount, dateTime FROM transactions WHERE userid = @userid AND type = 'Inkomst'";
+
                     using (var command = new NpgsqlCommand(incomeQuery, connection))
                     {
                         try
                         {
                             command.Parameters.AddWithValue("userid", userId);
+
                             using (var reader = command.ExecuteReader())
                             {
                                 try
@@ -120,6 +126,7 @@ namespace PersonalFinanceProgram
                     throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
                 }
             }
+
             return (
                 $"Årsvis inkomst: {yearIncome:C}",
                 $"Månadsvis inkomst: {monthIncome:C}",
@@ -129,3 +136,4 @@ namespace PersonalFinanceProgram
         }
     }
 }
+

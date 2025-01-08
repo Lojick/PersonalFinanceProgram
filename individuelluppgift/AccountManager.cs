@@ -20,7 +20,7 @@ namespace PersonalFinanceProgram
                     throw new Exception("Fel vid öppning av databasanslutning: " + ex.Message);
                 }
 
-                using (var transaction = connection.BeginTransaction()) // Börjar SQL transaktionen
+                using (var transaction = connection.BeginTransaction()) // Börjar SQL-transaktionen
                 {
                     try
                     {
@@ -28,12 +28,10 @@ namespace PersonalFinanceProgram
                         var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
                         // Lägg till användaren i databasen
-                        var addUserQuery =
-                            "INSERT INTO users (name, hashedPassword) VALUES (@name, @hashedPassword) RETURNING userid";
+                        var addUserQuery = "INSERT INTO users (name, hashedPassword) VALUES (@name, @hashedPassword) RETURNING userid";
                         int userId;
-                        using (
-                            var command = new NpgsqlCommand(addUserQuery, connection, transaction)
-                        )
+
+                        using (var command = new NpgsqlCommand(addUserQuery, connection, transaction))
                         {
                             try
                             {
@@ -43,22 +41,14 @@ namespace PersonalFinanceProgram
                             }
                             catch (Exception ex)
                             {
-                                throw new Exception(
-                                    "Fel vid registrering av användaren: " + ex.Message
-                                );
+                                throw new Exception("Fel vid registrering av användaren: " + ex.Message);
                             }
                         }
 
                         // Lägg till en initial transaktion
-                        var addTransactionQuery =
-                            "INSERT INTO transactions (userid, amount, type, dateTime) VALUES (@userid, @amount, @type, @dateTime)";
-                        using (
-                            var command = new NpgsqlCommand(
-                                addTransactionQuery,
-                                connection,
-                                transaction
-                            )
-                        )
+                        var addTransactionQuery = "INSERT INTO transactions (userid, amount, type, dateTime) VALUES (@userid, @amount, @type, @dateTime)";
+
+                        using (var command = new NpgsqlCommand(addTransactionQuery, connection, transaction))
                         {
                             try
                             {
@@ -70,9 +60,7 @@ namespace PersonalFinanceProgram
                             }
                             catch (Exception ex)
                             {
-                                throw new Exception(
-                                    "Fel vid skapande av initial transaktion: " + ex.Message
-                                );
+                                throw new Exception("Fel vid skapande av initial transaktion: " + ex.Message);
                             }
                         }
 
@@ -103,6 +91,7 @@ namespace PersonalFinanceProgram
                 }
 
                 var query = "SELECT userid, hashedPassword FROM users WHERE name = @name";
+
                 using (var command = new NpgsqlCommand(query, connection))
                 {
                     try
@@ -124,9 +113,7 @@ namespace PersonalFinanceProgram
                             }
                             catch (Exception ex)
                             {
-                                throw new Exception(
-                                    "Fel vid verifiering av användaren: " + ex.Message
-                                );
+                                throw new Exception("Fel vid verifiering av användaren: " + ex.Message);
                             }
                         }
                     }

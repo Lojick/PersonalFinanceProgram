@@ -1,16 +1,15 @@
 using System;
+using System.Collections.Generic;
 using Npgsql;
 
 namespace PersonalFinanceProgram
 {
     public static class TransactionManager
     {
-        public static void AddTransaction( //Metod för att lägga till transaktioner i databasen
-            int userid,
-            decimal amount,
-            string type,
-            DateTime dateTime
-        )
+        /// <summary>
+        /// Lägger till en transaktion i databasen.
+        /// </summary>
+        public static void AddTransaction(int userid, decimal amount, string type, DateTime dateTime)
         {
             using (var connection = DatabaseConnection.GetConnection())
             {
@@ -19,6 +18,7 @@ namespace PersonalFinanceProgram
                     connection.Open();
                     var addTransactionQuery =
                         "INSERT INTO transactions (userid, amount, type, dateTime) VALUES (@userid, @amount, @type, @dateTime)";
+
                     using (var command = new NpgsqlCommand(addTransactionQuery, connection))
                     {
                         try
@@ -42,8 +42,9 @@ namespace PersonalFinanceProgram
             }
         }
 
-        //Metod för att hämta och visa transaktioner från databasen tillsammans med användarnamn (JOINS)
-        //Den lägger till transaktionen i en lista i slutet och returnerar listan.
+        /// <summary>
+        /// Hämtar och returnerar transaktioner för en användare, tillsammans med användarnamnet.
+        /// </summary>
         public static List<(string UserName, Transaction Transaction)> GetTransactions(int userId)
         {
             var results = new List<(string UserName, Transaction Transaction)>();
@@ -53,8 +54,7 @@ namespace PersonalFinanceProgram
                 try
                 {
                     connection.Open();
-                    var query =
-                        @"
+                    var query = @"
                         SELECT u.name, t.transactionid, t.amount, t.type, t.dateTime 
                         FROM users u
                         JOIN transactions t ON u.userid = t.userid
@@ -70,36 +70,30 @@ namespace PersonalFinanceProgram
                             {
                                 try
                                 {
-                                    while (reader.Read()) //Läser JOINS-tabellen rad för rad.
-                                    { //Efter att ha läst klart så lägger den till värden från alla kolumner till en lista och skapar ett objekt.
-                                        results.Add(
-                                            (
-                                                reader.GetString(0), // UserName
-                                                new Transaction
-                                                {
-                                                    TransactionId = reader.GetInt32(1),
-                                                    UserId = userId,
-                                                    Amount = reader.GetDecimal(2),
-                                                    Type = reader.GetString(3),
-                                                    DateTime = reader.GetDateTime(4),
-                                                }
-                                            )
-                                        );
+                                    while (reader.Read())
+                                    {
+                                        results.Add((
+                                            reader.GetString(0), // UserName
+                                            new Transaction
+                                            {
+                                                TransactionId = reader.GetInt32(1),
+                                                UserId = userId,
+                                                Amount = reader.GetDecimal(2),
+                                                Type = reader.GetString(3),
+                                                DateTime = reader.GetDateTime(4),
+                                            }
+                                        ));
                                     }
                                 }
                                 catch (Exception ex)
                                 {
-                                    throw new Exception(
-                                        "Fel vid läsning av transaktioner: " + ex.Message
-                                    );
+                                    throw new Exception("Fel vid läsning av transaktioner: " + ex.Message);
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            throw new Exception(
-                                "Fel vid exekvering av SELECT-fråga: " + ex.Message
-                            );
+                            throw new Exception("Fel vid exekvering av SELECT-fråga: " + ex.Message);
                         }
                     }
                 }
@@ -112,7 +106,9 @@ namespace PersonalFinanceProgram
             return results;
         }
 
-        //Metod för att ta bort en transaktion från databasen baserat på transactionid och userid (den användaren man är inloggad med).
+        /// <summary>
+        /// Tar bort en transaktion från databasen baserat på transactionid och userid.
+        /// </summary>
         public static void RemoveTransaction(int transactionid, int userid)
         {
             using (var connection = DatabaseConnection.GetConnection())
@@ -122,6 +118,7 @@ namespace PersonalFinanceProgram
                     connection.Open();
                     var query =
                         "DELETE FROM transactions WHERE transactionid = @transactionid AND userid = @userid";
+
                     using (var command = new NpgsqlCommand(query, connection))
                     {
                         try

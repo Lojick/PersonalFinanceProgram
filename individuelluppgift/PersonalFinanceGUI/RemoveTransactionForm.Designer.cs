@@ -38,7 +38,7 @@
             // 
             lblRemoveTransaction.AutoSize = true;
             lblRemoveTransaction.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRemoveTransaction.Location = new Point(158, 35);
+            lblRemoveTransaction.Location = new Point(231, 29);
             lblRemoveTransaction.Name = "lblRemoveTransaction";
             lblRemoveTransaction.Size = new Size(412, 26);
             lblRemoveTransaction.TabIndex = 0;
@@ -49,9 +49,9 @@
             btnRemoveTransaction.BackColor = Color.IndianRed;
             btnRemoveTransaction.FlatStyle = FlatStyle.Flat;
             btnRemoveTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRemoveTransaction.Location = new Point(46, 167);
+            btnRemoveTransaction.Location = new Point(381, 418);
             btnRemoveTransaction.Name = "btnRemoveTransaction";
-            btnRemoveTransaction.Size = new Size(109, 41);
+            btnRemoveTransaction.Size = new Size(112, 62);
             btnRemoveTransaction.TabIndex = 1;
             btnRemoveTransaction.Text = "Ta bort";
             btnRemoveTransaction.UseVisualStyleBackColor = false;
@@ -62,7 +62,7 @@
             btnReturnFromRemoveTransactionForm.BackColor = SystemColors.ScrollBar;
             btnReturnFromRemoveTransactionForm.FlatStyle = FlatStyle.Flat;
             btnReturnFromRemoveTransactionForm.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReturnFromRemoveTransactionForm.Location = new Point(587, 409);
+            btnReturnFromRemoveTransactionForm.Location = new Point(693, 418);
             btnReturnFromRemoveTransactionForm.Name = "btnReturnFromRemoveTransactionForm";
             btnReturnFromRemoveTransactionForm.Size = new Size(112, 62);
             btnReturnFromRemoveTransactionForm.TabIndex = 2;
@@ -75,9 +75,9 @@
             listboxTransactions.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listboxTransactions.FormattingEnabled = true;
             listboxTransactions.ItemHeight = 21;
-            listboxTransactions.Location = new Point(181, 81);
+            listboxTransactions.Location = new Point(56, 73);
             listboxTransactions.Name = "listboxTransactions";
-            listboxTransactions.Size = new Size(366, 319);
+            listboxTransactions.Size = new Size(749, 319);
             listboxTransactions.TabIndex = 3;
             listboxTransactions.SelectedIndexChanged += listboxTransactions_SelectedIndexChanged_1;
             // 
@@ -86,7 +86,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(729, 492);
+            ClientSize = new Size(874, 492);
             Controls.Add(listboxTransactions);
             Controls.Add(btnReturnFromRemoveTransactionForm);
             Controls.Add(btnRemoveTransaction);

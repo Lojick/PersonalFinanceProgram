@@ -7,7 +7,7 @@ namespace PersonalFinanceProgram
         public static decimal GetBalance(int userId)
         {
             decimal inkomst = 0; // Här sparar vi summan av inkomster
-            decimal utgift = 0; // Här sparar vi summan av utgifter
+            decimal utgift = 0;  // Här sparar vi summan av utgifter
 
             try
             {
@@ -26,8 +26,7 @@ namespace PersonalFinanceProgram
                     // Hämta inkomster
                     try
                     {
-                        var incomeQuery =
-                            "SELECT SUM(amount) FROM transactions WHERE userid = @userid AND type = 'Inkomst'";
+                        var incomeQuery = "SELECT SUM(amount) FROM transactions WHERE userid = @userid AND type = 'Inkomst'";
                         using (var incomeCmd = new NpgsqlCommand(incomeQuery, connection))
                         {
                             incomeCmd.Parameters.AddWithValue("userid", userId);
@@ -50,8 +49,7 @@ namespace PersonalFinanceProgram
                     // Hämta utgifter
                     try
                     {
-                        var expenseQuery =
-                            "SELECT SUM(amount) FROM transactions WHERE userid = @userid AND type = 'Utgift'";
+                        var expenseQuery = "SELECT SUM(amount) FROM transactions WHERE userid = @userid AND type = 'Utgift'";
                         using (var expenseCmd = new NpgsqlCommand(expenseQuery, connection))
                         {
                             expenseCmd.Parameters.AddWithValue("userid", userId);

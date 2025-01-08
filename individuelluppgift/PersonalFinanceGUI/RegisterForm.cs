@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using PersonalFinanceProgram; // Importera ditt logikbibliotek
 
@@ -52,39 +51,16 @@ namespace PersonalFinanceGUI
             this.Close(); // Stänger formuläret
         }
 
-        private void txtRegisterUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRegisterPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        
-
-        private void txtInitialAmount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Klickhändelse för "Visa lösenord"-checkbox
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkShowPassword.Checked)
-            {
-                //Visa lösenordet
-                txtRegisterPassword.UseSystemPasswordChar = false;   
-            }
-            else
-            {
-                //Dölj lösenordet
-                txtRegisterPassword.UseSystemPasswordChar = true;
-            }
+            txtRegisterPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
+
+        // Oanvända eventhanterare (kan tas bort om de inte används)
+        private void txtRegisterUsername_TextChanged(object sender, EventArgs e) { }
+        private void txtRegisterPassword_TextChanged(object sender, EventArgs e) { }
+        private void txtInitialAmount_TextChanged(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }
