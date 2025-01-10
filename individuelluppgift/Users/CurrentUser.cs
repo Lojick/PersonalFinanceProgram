@@ -11,6 +11,8 @@ namespace PersonalFinanceProgram
             UserID = userid;
             UserName = username;
         }
+
+        //Uppdaterar inloggad användares namn
         public static void UpdateCurrentUserName (string newName)
         {
             UserName = newName;

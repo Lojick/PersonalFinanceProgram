@@ -75,7 +75,7 @@
             updateFormbtn.Name = "updateFormbtn";
             updateFormbtn.Size = new Size(170, 65);
             updateFormbtn.TabIndex = 16;
-            updateFormbtn.Text = "Uppdatera användaruppgifter";
+            updateFormbtn.Text = "Ändra användaruppgifter";
             updateFormbtn.UseVisualStyleBackColor = false;
             updateFormbtn.Click += updateFormbtn_Click;
             // 
@@ -121,7 +121,7 @@
             btnShowReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
             btnShowReport.Location = new Point(241, 211);
             btnShowReport.Name = "btnShowReport";
-            btnShowReport.Size = new Size(186, 88);
+            btnShowReport.Size = new Size(170, 65);
             btnShowReport.TabIndex = 13;
             btnShowReport.Text = "Visa utgifter och inkomster";
             btnShowReport.UseVisualStyleBackColor = false;
@@ -134,7 +134,7 @@
             btnShowBalance.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnShowBalance.Location = new Point(32, 211);
             btnShowBalance.Name = "btnShowBalance";
-            btnShowBalance.Size = new Size(186, 88);
+            btnShowBalance.Size = new Size(170, 65);
             btnShowBalance.TabIndex = 12;
             btnShowBalance.Text = "Visa kontobalans";
             btnShowBalance.UseVisualStyleBackColor = false;
@@ -158,9 +158,9 @@
             btnRemoveTransaction.BackColor = Color.Gainsboro;
             btnRemoveTransaction.FlatStyle = FlatStyle.Flat;
             btnRemoveTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
-            btnRemoveTransaction.Location = new Point(659, 209);
+            btnRemoveTransaction.Location = new Point(659, 211);
             btnRemoveTransaction.Name = "btnRemoveTransaction";
-            btnRemoveTransaction.Size = new Size(186, 88);
+            btnRemoveTransaction.Size = new Size(170, 65);
             btnRemoveTransaction.TabIndex = 9;
             btnRemoveTransaction.Text = "Ta bort transaktioner\r\n";
             btnRemoveTransaction.UseVisualStyleBackColor = false;
@@ -171,9 +171,9 @@
             btnAddTransaction.BackColor = Color.Gainsboro;
             btnAddTransaction.FlatStyle = FlatStyle.Flat;
             btnAddTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
-            btnAddTransaction.Location = new Point(449, 209);
+            btnAddTransaction.Location = new Point(450, 211);
             btnAddTransaction.Name = "btnAddTransaction";
-            btnAddTransaction.Size = new Size(186, 88);
+            btnAddTransaction.Size = new Size(170, 65);
             btnAddTransaction.TabIndex = 8;
             btnAddTransaction.Text = "Lägg till transaktioner\r\n";
             btnAddTransaction.UseVisualStyleBackColor = false;
