@@ -15,4 +15,4 @@ obj/
 *.vsidx
 
 # Ignorera connectionstring
-Individuelluppgift/appsettings.json
+appsettings.json
