@@ -116,5 +116,21 @@ namespace PersonalFinanceGUI
         {
             // Tom eventhanterare för label (kan tas bort om den inte används)
         }
+
+        private void updateFormbtn_Click(object sender, EventArgs e)
+        {
+            UpdateUserForm updateForm = new UpdateUserForm();
+            updateForm.ShowDialog();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            //Varje gång du uppdaterar ditt namn så kommer välkomsttexten uppdateras automatiskt.
+            lblMainMeny.Text = $"Välkommen, du är inloggad som: {CurrentUser.UserName}";
+            lblMainMeny.Location = new Point(
+                (this.ClientSize.Width - lblMainMeny.Width) / 2,
+                lblMainMeny.Location.Y
+            );
+        }
     }
 }

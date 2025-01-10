@@ -11,6 +11,10 @@ namespace PersonalFinanceProgram
             UserID = userid;
             UserName = username;
         }
+        public static void UpdateCurrentUserName (string newName)
+        {
+            UserName = newName;
+        }
 
         // Loggar ut användaren och återställer värden
         public static void Logout()

@@ -30,6 +30,8 @@
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             mainPanel = new Panel();
+            updateFormbtn = new Button();
+            button1 = new Button();
             btnLogout = new Button();
             btnCloseProgram = new Button();
             btnShowReport = new Button();
@@ -39,7 +41,6 @@
             btnAddTransaction = new Button();
             backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             fileSystemWatcher1 = new FileSystemWatcher();
-            button1 = new Button();
             mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
@@ -48,6 +49,7 @@
             // 
             mainPanel.BackgroundImage = Properties.Resources.Pengar_bakgrund_till_GUI;
             mainPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            mainPanel.Controls.Add(updateFormbtn);
             mainPanel.Controls.Add(button1);
             mainPanel.Controls.Add(btnLogout);
             mainPanel.Controls.Add(btnCloseProgram);
@@ -63,12 +65,35 @@
             mainPanel.TabIndex = 8;
             mainPanel.Paint += mainPanel_Paint;
             // 
+            // updateFormbtn
+            // 
+            updateFormbtn.BackColor = Color.Gainsboro;
+            updateFormbtn.BackgroundImageLayout = ImageLayout.None;
+            updateFormbtn.FlatStyle = FlatStyle.Flat;
+            updateFormbtn.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            updateFormbtn.Location = new Point(48, 347);
+            updateFormbtn.Name = "updateFormbtn";
+            updateFormbtn.Size = new Size(170, 65);
+            updateFormbtn.TabIndex = 16;
+            updateFormbtn.Text = "Uppdatera användaruppgifter";
+            updateFormbtn.UseVisualStyleBackColor = false;
+            updateFormbtn.Click += updateFormbtn_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(692, 358);
+            button1.Name = "button1";
+            button1.Size = new Size(8, 8);
+            button1.TabIndex = 15;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // btnLogout
             // 
             btnLogout.BackColor = Color.Gainsboro;
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogout.Location = new Point(487, 365);
+            btnLogout.Location = new Point(354, 345);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(170, 65);
             btnLogout.TabIndex = 14;
@@ -81,7 +106,7 @@
             btnCloseProgram.BackColor = Color.Gainsboro;
             btnCloseProgram.FlatStyle = FlatStyle.Flat;
             btnCloseProgram.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCloseProgram.Location = new Point(215, 365);
+            btnCloseProgram.Location = new Point(659, 347);
             btnCloseProgram.Name = "btnCloseProgram";
             btnCloseProgram.Size = new Size(170, 65);
             btnCloseProgram.TabIndex = 10;
@@ -159,15 +184,6 @@
             fileSystemWatcher1.EnableRaisingEvents = true;
             fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // button1
-            // 
-            button1.Location = new Point(692, 358);
-            button1.Name = "button1";
-            button1.Size = new Size(8, 8);
-            button1.TabIndex = 15;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -177,6 +193,7 @@
             Controls.Add(mainPanel);
             Name = "Form1";
             Text = "Form1";
+            Activated += Form1_Activated;
             Load += Form1_Load;
             mainPanel.ResumeLayout(false);
             mainPanel.PerformLayout();
@@ -197,5 +214,6 @@
         private FileSystemWatcher fileSystemWatcher1;
         private Button btnLogout;
         private Button button1;
+        private Button updateFormbtn;
     }
 }
