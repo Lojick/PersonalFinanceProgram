@@ -15,4 +15,4 @@ obj/
 *.vsidx
 
 # Ignorera connectionstring
-PersonalFinanceProgram/appsettings.json
+Individuelluppgift/appsettings.json
