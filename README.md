@@ -19,12 +19,13 @@ Programmet är delat i två delar:
 
 ## Databaskonfiguration
 
-För att aktivera anslutning till en databas behöver du skapa en `appsettings.json`-fil. Följ stegen nedan:
+För att programmet ska fungera med en databas behöver du endast skapa en tom databas i PostgreSQL. Programmet skapar automatiskt tabellerna åt dig.
 
-1. **Skapa `appsettings.json`**  
+1. **Skapa `appsettings.json`**
+   Anpassa Username, Password och Database efter dina PostgreSQL-inställningar:
    Skapa en fil med namnet `appsettings.json` i samma katalog som den körbara filen för projektet (där `.exe`-filen finns).
 
-2. **Klistra in följande innehåll i filen**:
+3. **Klistra in följande innehåll i filen**:
    ```json
    {
      "ConnectionStrings": {
