@@ -15,7 +15,7 @@ namespace PersonalFinanceGUI
         private void btnSaveTransaction_Click(object sender, EventArgs e)
         {
             // Försök att konvertera texten i txtAmount till en decimal och spara i variabeln "amount"
-            if (decimal.TryParse(txtAmount.Text, out decimal amount))
+            if (decimal.TryParse(txtAmount.Text, out decimal amount) && amount > 0)
             {
                 string type;
 

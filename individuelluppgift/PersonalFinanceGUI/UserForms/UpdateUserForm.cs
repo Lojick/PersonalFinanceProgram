@@ -40,6 +40,7 @@ namespace PersonalFinanceGUI
                 CurrentUser.UpdateCurrentUserName(newName);
 
                 MessageBox.Show("Användaruppgifter uppdaterades!", "Framgång", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {

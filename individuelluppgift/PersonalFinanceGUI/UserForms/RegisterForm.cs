@@ -26,7 +26,7 @@ namespace PersonalFinanceGUI
             }
 
             // Kontrollera att initialAmount är ett giltigt tal
-            if (!decimal.TryParse(txtInitialAmount.Text, out initialAmount))
+            if (!decimal.TryParse(txtInitialAmount.Text, out initialAmount) || initialAmount < 0)
             {
                 MessageBox.Show("Ange ett giltigt startbelopp.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

@@ -31,7 +31,13 @@
             lblRemoveTransaction = new Label();
             btnRemoveTransaction = new Button();
             btnReturnFromRemoveTransactionForm = new Button();
-            listboxTransactions = new ListBox();
+            dataGridView1 = new DataGridView();
+            TransactionID = new DataGridViewTextBoxColumn();
+            userColumn = new DataGridViewTextBoxColumn();
+            transactionColumn = new DataGridViewTextBoxColumn();
+            amountColumn = new DataGridViewTextBoxColumn();
+            datetimeColumn = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // lblRemoveTransaction
@@ -49,9 +55,9 @@
             btnRemoveTransaction.BackColor = Color.IndianRed;
             btnRemoveTransaction.FlatStyle = FlatStyle.Flat;
             btnRemoveTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRemoveTransaction.Location = new Point(381, 418);
+            btnRemoveTransaction.Location = new Point(16, 154);
             btnRemoveTransaction.Name = "btnRemoveTransaction";
-            btnRemoveTransaction.Size = new Size(112, 62);
+            btnRemoveTransaction.Size = new Size(113, 43);
             btnRemoveTransaction.TabIndex = 1;
             btnRemoveTransaction.Text = "Ta bort";
             btnRemoveTransaction.UseVisualStyleBackColor = false;
@@ -62,7 +68,7 @@
             btnReturnFromRemoveTransactionForm.BackColor = SystemColors.ScrollBar;
             btnReturnFromRemoveTransactionForm.FlatStyle = FlatStyle.Flat;
             btnReturnFromRemoveTransactionForm.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReturnFromRemoveTransactionForm.Location = new Point(693, 418);
+            btnReturnFromRemoveTransactionForm.Location = new Point(381, 418);
             btnReturnFromRemoveTransactionForm.Name = "btnReturnFromRemoveTransactionForm";
             btnReturnFromRemoveTransactionForm.Size = new Size(112, 62);
             btnReturnFromRemoveTransactionForm.TabIndex = 2;
@@ -70,16 +76,49 @@
             btnReturnFromRemoveTransactionForm.UseVisualStyleBackColor = false;
             btnReturnFromRemoveTransactionForm.Click += btnReturnFromRemoveTransactionForm_Click;
             // 
-            // listboxTransactions
+            // dataGridView1
             // 
-            listboxTransactions.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listboxTransactions.FormattingEnabled = true;
-            listboxTransactions.ItemHeight = 21;
-            listboxTransactions.Location = new Point(56, 73);
-            listboxTransactions.Name = "listboxTransactions";
-            listboxTransactions.Size = new Size(749, 319);
-            listboxTransactions.TabIndex = 3;
-            listboxTransactions.SelectedIndexChanged += listboxTransactions_SelectedIndexChanged_1;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = SystemColors.ControlLight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { TransactionID, userColumn, transactionColumn, amountColumn, datetimeColumn });
+            dataGridView1.Location = new Point(135, 58);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(604, 330);
+            dataGridView1.TabIndex = 3;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.Enter += dataGridView1_Enter;
+            // 
+            // TransactionID
+            // 
+            TransactionID.HeaderText = "TransactionID";
+            TransactionID.Name = "TransactionID";
+            TransactionID.ReadOnly = true;
+            // 
+            // userColumn
+            // 
+            userColumn.HeaderText = "Username";
+            userColumn.Name = "userColumn";
+            userColumn.ReadOnly = true;
+            // 
+            // transactionColumn
+            // 
+            transactionColumn.HeaderText = "Type";
+            transactionColumn.Name = "transactionColumn";
+            transactionColumn.ReadOnly = true;
+            // 
+            // amountColumn
+            // 
+            amountColumn.HeaderText = "Amount";
+            amountColumn.Name = "amountColumn";
+            amountColumn.ReadOnly = true;
+            // 
+            // datetimeColumn
+            // 
+            datetimeColumn.HeaderText = "Date";
+            datetimeColumn.Name = "datetimeColumn";
+            datetimeColumn.ReadOnly = true;
             // 
             // RemoveTransactionForm
             // 
@@ -87,13 +126,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(874, 492);
-            Controls.Add(listboxTransactions);
+            Controls.Add(dataGridView1);
             Controls.Add(btnReturnFromRemoveTransactionForm);
             Controls.Add(btnRemoveTransaction);
             Controls.Add(lblRemoveTransaction);
             Name = "RemoveTransactionForm";
             Text = "RemoveTransactionForm";
             Load += RemoveTransactionForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,6 +143,11 @@
         private System.Windows.Forms.Label lblRemoveTransaction;
         private System.Windows.Forms.Button btnRemoveTransaction;
         private System.Windows.Forms.Button btnReturnFromRemoveTransactionForm;
-        private System.Windows.Forms.ListBox listboxTransactions;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn TransactionID;
+        private DataGridViewTextBoxColumn userColumn;
+        private DataGridViewTextBoxColumn transactionColumn;
+        private DataGridViewTextBoxColumn amountColumn;
+        private DataGridViewTextBoxColumn datetimeColumn;
     }
 }

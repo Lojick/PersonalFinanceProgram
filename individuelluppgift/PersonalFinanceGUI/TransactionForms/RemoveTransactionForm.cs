@@ -11,9 +11,6 @@ namespace PersonalFinanceGUI
         {
             InitializeComponent(); // Initierar alla komponenter i formuläret
             LoadTransactions();    // Ladda och visa alla transaktioner i listboxen vid formulärets start
-
-            // Ställ in teckensnittet för listboxen
-            listboxTransactions.Font = new Font("Consolas", 10);
         }
 
         // Metod för att ladda transaktioner till listboxen
@@ -25,13 +22,17 @@ namespace PersonalFinanceGUI
                 var transactionsWithUserName = TransactionManager.GetTransactions(CurrentUser.UserID);
 
                 // Rensa listboxen innan nya transaktioner läggs till
-                listboxTransactions.Items.Clear();
+                dataGridView1.Rows.Clear();
 
-                // Lägg till varje transaktion i listboxen
+                // Lägg till varje transaktion i dataGridView
                 foreach (var (UserName, transaction) in transactionsWithUserName)
                 {
-                    listboxTransactions.Items.Add(
-                        $"{transaction.TransactionId}: {transaction.Type} - {transaction.Amount} kr ({transaction.DateTime:yyyy-MM-dd HH:mm})"
+                    dataGridView1.Rows.Add(
+                        transaction.TransactionId,
+                        UserName,
+                        transaction.Type,
+                        transaction.Amount,
+                        transaction.DateTime.ToString("yyyy-MM-dd HH:mm")
                     );
                 }
             }
@@ -44,13 +45,13 @@ namespace PersonalFinanceGUI
         // Klickhändelse för att ta bort en vald transaktion
         private void btnRemoveTransaction_Click(object sender, EventArgs e)
         {
-            if (listboxTransactions.SelectedIndex >= 0) // Kontrollera om en transaktion är vald
+            if (dataGridView1.SelectedRows.Count > 0) // Kontrollera om en transaktion är vald
             {
                 try
                 {
                     // Hämta TransactionId från den valda raden
-                    var selectedTransaction = listboxTransactions.SelectedItem.ToString();
-                    int transactionId = int.Parse(selectedTransaction.Split(':')[0].Trim()); // Extrahera TransactionId
+                    var selectedRow = dataGridView1.SelectedRows[0];
+                    int transactionId = Convert.ToInt32(selectedRow.Cells["TransactionID"].Value);
 
                     // Ta bort transaktionen från databasen
                     TransactionManager.RemoveTransaction(transactionId, CurrentUser.UserID);
@@ -78,22 +79,20 @@ namespace PersonalFinanceGUI
             this.Close(); // Stänger formuläret och återgår till föregående vy
         }
 
-        // Händelse för listboxens valändring (valfritt att använda)
-        private void listboxTransactions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Lägg till eventuell logik för när ett objekt i listan väljs (valfritt)
-        }
-
         // Händelse som körs när formuläret laddas
         private void RemoveTransactionForm_Load(object sender, EventArgs e)
         {
             // Lägg till logik som körs när formuläret laddas (om nödvändigt)
         }
 
-        // Ytterligare eventhanterare för listboxen (kan tas bort om de inte används)
-        private void listboxTransactions_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Tom eventhanterare (kan tas bort om den inte behövs)
+
+        }
+
+        private void dataGridView1_Enter(object sender, EventArgs e)
+        {
+      
         }
     }
 }
