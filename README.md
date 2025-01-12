@@ -19,7 +19,7 @@ Programmet är delat i två delar:
 
 ## Databaskonfiguration
 
-För att programmet ska fungera med en databas behöver du endast skapa en tom databas i PostgreSQL. Programmet skapar automatiskt tabellerna åt dig.
+För att programmet ska fungera så behöver du endast skapa en tom databas i PostgreSQL. Programmet skapar automatiskt tabellerna åt dig.
 
 1. **Skapa `appsettings.json`**
    Anpassa Username, Password och Database efter dina PostgreSQL-inställningar:
