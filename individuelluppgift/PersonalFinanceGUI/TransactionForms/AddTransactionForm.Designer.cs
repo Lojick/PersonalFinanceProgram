@@ -91,6 +91,7 @@
             // 
             // btnSaveTransaction
             // 
+            btnSaveTransaction.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnSaveTransaction.BackColor = Color.FromArgb(192, 255, 192);
             btnSaveTransaction.FlatStyle = FlatStyle.Flat;
             btnSaveTransaction.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -134,6 +135,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button1.BackColor = SystemColors.ScrollBar;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);

@@ -41,6 +41,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(287, 58);
@@ -107,6 +108,7 @@
             // 
             // btnRegister
             // 
+            btnRegister.Anchor = AnchorStyles.Bottom;
             btnRegister.BackColor = SystemColors.ScrollBar;
             btnRegister.FlatStyle = FlatStyle.Flat;
             btnRegister.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -120,6 +122,7 @@
             // 
             // btnClose
             // 
+            btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClose.BackColor = SystemColors.ScrollBar;
             btnClose.BackgroundImageLayout = ImageLayout.None;
             btnClose.FlatStyle = FlatStyle.Flat;
@@ -134,6 +137,7 @@
             // 
             // chkShowPassword
             // 
+            chkShowPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             chkShowPassword.AutoSize = true;
             chkShowPassword.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chkShowPassword.Location = new Point(328, 262);
@@ -162,6 +166,7 @@
             Controls.Add(label1);
             Name = "RegisterForm";
             Text = "Registrera Användare";
+            Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

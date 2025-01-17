@@ -62,5 +62,10 @@ namespace PersonalFinanceGUI
         private void txtRegisterPassword_TextChanged(object sender, EventArgs e) { }
         private void txtInitialAmount_TextChanged(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
+
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

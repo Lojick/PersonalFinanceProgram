@@ -38,10 +38,15 @@
             lblDayExpense = new Label();
             label1 = new Label();
             btnReturnFromReport = new Button();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             SuspendLayout();
             // 
             // lblYearIncome
             // 
+            lblYearIncome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblYearIncome.AutoSize = true;
             lblYearIncome.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblYearIncome.Location = new Point(100, 105);
@@ -53,6 +58,7 @@
             // 
             // lblMonthIncome
             // 
+            lblMonthIncome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblMonthIncome.AutoSize = true;
             lblMonthIncome.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMonthIncome.Location = new Point(100, 142);
@@ -64,6 +70,7 @@
             // 
             // lblWeekIncome
             // 
+            lblWeekIncome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblWeekIncome.AutoSize = true;
             lblWeekIncome.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWeekIncome.Location = new Point(100, 183);
@@ -75,6 +82,7 @@
             // 
             // lblDayIncome
             // 
+            lblDayIncome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblDayIncome.AutoSize = true;
             lblDayIncome.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDayIncome.Location = new Point(100, 225);
@@ -86,6 +94,7 @@
             // 
             // lblYearExpense
             // 
+            lblYearExpense.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblYearExpense.AutoSize = true;
             lblYearExpense.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblYearExpense.Location = new Point(481, 103);
@@ -97,6 +106,7 @@
             // 
             // lblMonthExpense
             // 
+            lblMonthExpense.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblMonthExpense.AutoSize = true;
             lblMonthExpense.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMonthExpense.Location = new Point(484, 142);
@@ -108,6 +118,7 @@
             // 
             // lblWeekExpense
             // 
+            lblWeekExpense.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblWeekExpense.AutoSize = true;
             lblWeekExpense.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWeekExpense.Location = new Point(487, 181);
@@ -119,6 +130,7 @@
             // 
             // lblDayExpense
             // 
+            lblDayExpense.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblDayExpense.AutoSize = true;
             lblDayExpense.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDayExpense.Location = new Point(495, 220);
@@ -130,6 +142,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(281, 18);
@@ -140,6 +153,7 @@
             // 
             // btnReturnFromReport
             // 
+            btnReturnFromReport.Anchor = AnchorStyles.Bottom;
             btnReturnFromReport.BackColor = SystemColors.ScrollBar;
             btnReturnFromReport.FlatStyle = FlatStyle.Flat;
             btnReturnFromReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -150,6 +164,50 @@
             btnReturnFromReport.Text = "Tillbaka";
             btnReturnFromReport.UseVisualStyleBackColor = false;
             btnReturnFromReport.Click += btnReturnFromReport_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(100, 103);
+            label2.Name = "label2";
+            label2.Size = new Size(143, 26);
+            label2.TabIndex = 0;
+            label2.Text = "Årsvis Inkomst:";
+            label2.Click += lblYearIncome_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(100, 140);
+            label3.Name = "label3";
+            label3.Size = new Size(183, 26);
+            label3.TabIndex = 1;
+            label3.Text = "Månadsvis Inkomst:";
+            label3.Click += lblMonthIncome_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(100, 181);
+            label4.Name = "label4";
+            label4.Size = new Size(166, 26);
+            label4.TabIndex = 2;
+            label4.Text = "Veckovis Inkomst:";
+            label4.Click += lblWeekIncome_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(100, 223);
+            label5.Name = "label5";
+            label5.Size = new Size(148, 26);
+            label5.TabIndex = 3;
+            label5.Text = "Dagvis Inkomst:";
+            label5.Click += lblDayIncome_Click;
             // 
             // ShowReportForm
             // 
@@ -163,9 +221,13 @@
             Controls.Add(lblWeekExpense);
             Controls.Add(lblMonthExpense);
             Controls.Add(lblYearExpense);
+            Controls.Add(label5);
             Controls.Add(lblDayIncome);
+            Controls.Add(label4);
             Controls.Add(lblWeekIncome);
+            Controls.Add(label3);
             Controls.Add(lblMonthIncome);
+            Controls.Add(label2);
             Controls.Add(lblYearIncome);
             Name = "ShowReportForm";
             Text = "Form2";
@@ -186,5 +248,9 @@
         private Label lblDayExpense;
         private Label label1;
         private Button btnReturnFromReport;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
     }
 }

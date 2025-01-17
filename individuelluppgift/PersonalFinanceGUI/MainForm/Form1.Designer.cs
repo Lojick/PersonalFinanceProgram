@@ -67,6 +67,7 @@
             // 
             // updateFormbtn
             // 
+            updateFormbtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             updateFormbtn.BackColor = Color.Gainsboro;
             updateFormbtn.BackgroundImageLayout = ImageLayout.None;
             updateFormbtn.FlatStyle = FlatStyle.Flat;
@@ -90,6 +91,7 @@
             // 
             // btnLogout
             // 
+            btnLogout.Anchor = AnchorStyles.Bottom;
             btnLogout.BackColor = Color.Gainsboro;
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -103,6 +105,7 @@
             // 
             // btnCloseProgram
             // 
+            btnCloseProgram.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCloseProgram.BackColor = Color.Gainsboro;
             btnCloseProgram.FlatStyle = FlatStyle.Flat;
             btnCloseProgram.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -116,6 +119,7 @@
             // 
             // btnShowReport
             // 
+            btnShowReport.Anchor = AnchorStyles.Top;
             btnShowReport.BackColor = Color.Gainsboro;
             btnShowReport.FlatStyle = FlatStyle.Flat;
             btnShowReport.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
@@ -142,6 +146,7 @@
             // 
             // lblMainMeny
             // 
+            lblMainMeny.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblMainMeny.AutoSize = true;
             lblMainMeny.BackColor = Color.White;
             lblMainMeny.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -155,6 +160,7 @@
             // 
             // btnRemoveTransaction
             // 
+            btnRemoveTransaction.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRemoveTransaction.BackColor = Color.Gainsboro;
             btnRemoveTransaction.FlatStyle = FlatStyle.Flat;
             btnRemoveTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
@@ -168,10 +174,11 @@
             // 
             // btnAddTransaction
             // 
+            btnAddTransaction.Anchor = AnchorStyles.Top;
             btnAddTransaction.BackColor = Color.Gainsboro;
             btnAddTransaction.FlatStyle = FlatStyle.Flat;
             btnAddTransaction.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
-            btnAddTransaction.Location = new Point(450, 211);
+            btnAddTransaction.Location = new Point(451, 211);
             btnAddTransaction.Name = "btnAddTransaction";
             btnAddTransaction.Size = new Size(170, 65);
             btnAddTransaction.TabIndex = 8;

@@ -41,6 +41,7 @@
             // 
             // btnLogin
             // 
+            btnLogin.Anchor = AnchorStyles.Bottom;
             btnLogin.BackColor = SystemColors.ScrollBar;
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -54,6 +55,7 @@
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button2.BackColor = SystemColors.ScrollBar;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -96,6 +98,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -108,6 +111,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -125,7 +129,7 @@
             chkShowPassword.BackColor = Color.WhiteSmoke;
             chkShowPassword.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chkShowPassword.ForeColor = SystemColors.MenuText;
-            chkShowPassword.Location = new Point(345, 257);
+            chkShowPassword.Location = new Point(344, 257);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.Size = new Size(119, 23);
             chkShowPassword.TabIndex = 7;
@@ -135,6 +139,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button1.BackColor = SystemColors.ScrollBar;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);

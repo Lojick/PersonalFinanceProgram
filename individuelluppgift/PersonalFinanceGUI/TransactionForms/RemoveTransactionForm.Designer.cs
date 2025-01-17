@@ -65,6 +65,7 @@
             // 
             // btnReturnFromRemoveTransactionForm
             // 
+            btnReturnFromRemoveTransactionForm.Anchor = AnchorStyles.Bottom;
             btnReturnFromRemoveTransactionForm.BackColor = SystemColors.ScrollBar;
             btnReturnFromRemoveTransactionForm.FlatStyle = FlatStyle.Flat;
             btnReturnFromRemoveTransactionForm.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -78,6 +79,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.ControlLight;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
