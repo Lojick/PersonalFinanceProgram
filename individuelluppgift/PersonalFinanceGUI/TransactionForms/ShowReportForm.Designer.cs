@@ -38,10 +38,6 @@
             lblDayExpense = new Label();
             label1 = new Label();
             btnReturnFromReport = new Button();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
             SuspendLayout();
             // 
             // lblYearIncome
@@ -165,50 +161,6 @@
             btnReturnFromReport.UseVisualStyleBackColor = false;
             btnReturnFromReport.Click += btnReturnFromReport_Click;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(100, 103);
-            label2.Name = "label2";
-            label2.Size = new Size(143, 26);
-            label2.TabIndex = 0;
-            label2.Text = "Årsvis Inkomst:";
-            label2.Click += lblYearIncome_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(100, 140);
-            label3.Name = "label3";
-            label3.Size = new Size(183, 26);
-            label3.TabIndex = 1;
-            label3.Text = "Månadsvis Inkomst:";
-            label3.Click += lblMonthIncome_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(100, 181);
-            label4.Name = "label4";
-            label4.Size = new Size(166, 26);
-            label4.TabIndex = 2;
-            label4.Text = "Veckovis Inkomst:";
-            label4.Click += lblWeekIncome_Click;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(100, 223);
-            label5.Name = "label5";
-            label5.Size = new Size(148, 26);
-            label5.TabIndex = 3;
-            label5.Text = "Dagvis Inkomst:";
-            label5.Click += lblDayIncome_Click;
-            // 
             // ShowReportForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -221,13 +173,9 @@
             Controls.Add(lblWeekExpense);
             Controls.Add(lblMonthExpense);
             Controls.Add(lblYearExpense);
-            Controls.Add(label5);
             Controls.Add(lblDayIncome);
-            Controls.Add(label4);
             Controls.Add(lblWeekIncome);
-            Controls.Add(label3);
             Controls.Add(lblMonthIncome);
-            Controls.Add(label2);
             Controls.Add(lblYearIncome);
             Name = "ShowReportForm";
             Text = "Form2";
@@ -248,9 +196,5 @@
         private Label lblDayExpense;
         private Label label1;
         private Button btnReturnFromReport;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
     }
 }
